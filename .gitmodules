@@ -1,0 +1,3 @@
+[submodule "external/DataStructures"]
+	path = external/DataStructures
+	url = https://github.com/Bikash-Samanta/DataStructures
