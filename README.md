@@ -25,11 +25,6 @@ int main() {
 }
 ```
 
-## Dependencies
-
-* C++26 compatible compiler
-* [DataStructures](https://github.com/Bikash-Samanta/DataStructures)
-
 ## Build
 
 ```bash
