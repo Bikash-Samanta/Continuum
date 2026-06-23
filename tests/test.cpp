@@ -1,5 +1,7 @@
 #include <continuum/Number/bigint.hpp>
 
+#include <simd>
+
 using namespace continuum;
 
 int main() {
