@@ -22,5 +22,5 @@ target_compile_options(continuum PRIVATE
 
 target_link_libraries(continuum
     PUBLIC
-        datastructures
+        dsa
 )
