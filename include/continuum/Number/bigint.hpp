@@ -1,30 +1,32 @@
 #pragma once
-#ifndef __BIG_INT__
-#define __BIG_INT__
+#ifndef _BIG_INT_
+#define _BIG_INT_
 
-#include "DataStructures/Array.hpp"
+#include "dsa/array.hpp"
+
+
 using _BlockType = unsigned long long;
 using _SizeType = unsigned long long;
 
-namespace alpha {
-    class UnsignedInt : public Array<unsigned long long> {
+namespace continuum {
+    class BigInt : public dsa::array<unsigned long long> {
     public:
-        UnsignedInt(const char* _Hex);
+        BigInt(const char* _Hex);
     public:
-        bool operator> (const UnsignedInt& _That)const;
-        bool operator< (const UnsignedInt& _That)const;
-        bool operator>=(const UnsignedInt& _That)const;
-        bool operator<=(const UnsignedInt& _That)const;
+        bool operator> (const BigInt& _That)const;
+        bool operator< (const BigInt& _That)const;
+        bool operator>=(const BigInt& _That)const;
+        bool operator<=(const BigInt& _That)const;
 
 
-        UnsignedInt& operator<<=(const unsigned long long _Shift);
-        UnsignedInt& operator>>=(const unsigned long long _Shift);
-        UnsignedInt& operator|=(const UnsignedInt& _That);
-        UnsignedInt& operator&=(const UnsignedInt& _That);
-        UnsignedInt& operator^=(const UnsignedInt& _That);
-        UnsignedInt& operator+=(const UnsignedInt& _That);
-        UnsignedInt& operator-=(const UnsignedInt& _That);
-        UnsignedInt& operator*=(const UnsignedInt& _That);
+        BigInt& operator<<=(const unsigned long long _Shift);
+        BigInt& operator>>=(const unsigned long long _Shift);
+        BigInt& operator|=(const BigInt& _That);
+        BigInt& operator&=(const BigInt& _That);
+        BigInt& operator^=(const BigInt& _That);
+        BigInt& operator+=(const BigInt& _That);
+        BigInt& operator-=(const BigInt& _That);
+        BigInt& operator*=(const BigInt& _That);
         // constexpr UnsignedInt& operator/=(const UnsignedInt& _That)noexcept;
         // constexpr UnsignedInt& operator%=(const UnsignedInt& _That)noexcept;
 
@@ -32,7 +34,7 @@ namespace alpha {
         void print(FILE* file)const;
     };
 
-    void _print(const UnsignedInt& x);
+    void _print(const BigInt& x);
 }
 
 

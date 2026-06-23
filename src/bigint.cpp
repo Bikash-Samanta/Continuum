@@ -4,7 +4,7 @@
 
 
 
-namespace alpha {
+namespace continuum {
     #define GREEN_FLAG 1
     using _MaxType = unsigned __int128;
     using _SignedType = long long;
@@ -58,7 +58,7 @@ namespace IO {
     }
 }
 
-    UnsignedInt::UnsignedInt (const char* _Hex){
+    BigInt::BigInt (const char* _Hex){
         _SizeType _Len = strlen(_Hex);
         _Hex = IO::_Refine(_Hex, &_Len);
         _Siz = _Len / _TotalHex + 1;
@@ -66,7 +66,7 @@ namespace IO {
         IO::_TransformHexToInt(_Hex, _Len, _Ptr);
     }
 
-    void UnsignedInt::print(FILE* _FILE)const {
+    void BigInt::print(FILE* _FILE)const {
         static const unsigned char _hexcode[] = "0123456789abcdef";
         #define _BuffSiz  1023
         unsigned char _Buffer[_BuffSiz + 1];
@@ -90,10 +90,10 @@ namespace IO {
         }
         fwrite(_Buffer, 1, _idx, _FILE);
     }
-    void _print(const UnsignedInt& x) {
+    void _print(const BigInt& x) {
         x.print(stdout);
     }
-    bool UnsignedInt::operator> (const UnsignedInt& _That)const {
+    bool BigInt::operator> (const BigInt& _That)const {
         if (_Siz != _That._Siz)
             return _Siz > _That._Siz;
 
@@ -103,18 +103,18 @@ namespace IO {
         }
         return false;
     }
-    bool UnsignedInt::operator< (const UnsignedInt& _That)const {
+    bool BigInt::operator< (const BigInt& _That)const {
         return _That > *this;
     }
-    bool UnsignedInt::operator>=(const UnsignedInt& _That)const {
+    bool BigInt::operator>=(const BigInt& _That)const {
         return !(_That > *this);
     }
-    bool UnsignedInt::operator<=(const UnsignedInt& _That)const {
+    bool BigInt::operator<=(const BigInt& _That)const {
         return !(*this > _That);
     }
 
 
-    UnsignedInt& UnsignedInt::operator<<=(const unsigned long long _Shift) {
+    BigInt& BigInt::operator<<=(const unsigned long long _Shift) {
         constexpr auto _BlockBits = 8 * sizeof(_Ptr[0]);
         const auto _BlockShift = _Shift / _BlockBits;
         const auto _BitShift = _Shift % _BlockBits;
@@ -146,7 +146,7 @@ namespace IO {
 
         return *this;
     }
-    UnsignedInt& UnsignedInt::operator>>=(const unsigned long long _Shift) {
+    BigInt& BigInt::operator>>=(const unsigned long long _Shift) {
         constexpr auto _BlockBits = 8 * sizeof(_Ptr[0]);
         const auto _BlockShift = _Shift / _BlockBits;
         const auto _BitShift = _Shift % _BlockBits;
@@ -179,7 +179,7 @@ namespace IO {
         return *this;
     }
     
-    UnsignedInt& UnsignedInt::operator|=(const UnsignedInt& _That) {
+    BigInt& BigInt::operator|=(const BigInt& _That) {
         if (_That._Siz > _Cap)
             _Reallocate(_That._Siz);
         if (_That._Siz > _Siz) {
@@ -191,7 +191,7 @@ namespace IO {
             _Ptr[i] |= _That._Ptr[i];
         return *this;
     }
-    UnsignedInt& UnsignedInt::operator&=(const UnsignedInt& _That) {
+    BigInt& BigInt::operator&=(const BigInt& _That) {
         if (_That._Siz > _Cap)
             _Reallocate(_That._Siz);
         if (_That._Siz > _Siz) {
@@ -203,7 +203,7 @@ namespace IO {
             _Ptr[i] &= _That._Ptr[i];
         return *this;
     }
-    UnsignedInt& UnsignedInt::operator^=(const UnsignedInt& _That) {
+    BigInt& BigInt::operator^=(const BigInt& _That) {
         if (_That._Siz > _Cap)
             _Reallocate(_That._Siz);
         if (_That._Siz > _Siz) {
@@ -215,7 +215,7 @@ namespace IO {
             _Ptr[i] ^= _That._Ptr[i];
         return *this;
     }
-    UnsignedInt& UnsignedInt::operator+=(const UnsignedInt& _That) {
+    BigInt& BigInt::operator+=(const BigInt& _That) {
         if (_That._Siz > _Cap)
             _Reallocate(_That._Siz);
         for (; _Siz < _That._Siz; ++_Siz)
@@ -246,7 +246,7 @@ namespace IO {
         }
         return *this;
     }
-    UnsignedInt& UnsignedInt::operator-=(const UnsignedInt& _That) {
+    BigInt& BigInt::operator-=(const BigInt& _That) {
         auto _Brrw1 = false;
         auto _Brrw2 = false;
         for (_SizeType i = 0; i < _That._Siz; ++i) {
@@ -430,7 +430,7 @@ namespace Karatsuba {
 }
 
 
-    UnsignedInt& UnsignedInt::operator*=(const UnsignedInt& _That){
+    BigInt& BigInt::operator*=(const BigInt& _That){
         _SizeType _expected_siz;
         if(_Siz >= _That._Siz) {
             _expected_siz = _Siz * 2;

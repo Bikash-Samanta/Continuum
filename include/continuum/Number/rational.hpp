@@ -2,7 +2,7 @@
 #ifndef __RATIONAL_NUMBER__
 #define __RATIONAL_NUMBER__
 
-namespace alpha {
+namespace continuum {
 
 	template<class _Int> 
 	class Rational {

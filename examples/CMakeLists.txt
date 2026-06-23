@@ -5,5 +5,5 @@ foreach(example ${EXAMPLES})
 
     add_executable(${example_name} ${example})
 
-    target_link_libraries(${example_name} PRIVATE Continuum)
+    target_link_libraries(${example_name} PRIVATE continuum)
 endforeach()

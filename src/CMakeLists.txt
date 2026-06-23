@@ -1,8 +1,8 @@
 file(GLOB_RECURSE CONTINUUM_SOURCES "*.cpp")
 
-add_library(Continuum ${CONTINUUM_SOURCES})
+add_library(continuum ${CONTINUUM_SOURCES})
 
-target_include_directories(Continuum
+target_include_directories(continuum
     PUBLIC
         ${PROJECT_SOURCE_DIR}/include
 
@@ -10,7 +10,7 @@ target_include_directories(Continuum
         ${PROJECT_SOURCE_DIR}/include/continuum
 )
 
-target_compile_options(Continuum PRIVATE
+target_compile_options(continuum PRIVATE
     -Wall
     -Wextra
     -Wpedantic
@@ -18,4 +18,9 @@ target_compile_options(Continuum PRIVATE
     -mpclmul
     -msse4.1
     -Wno-ignored-attributes
+)
+
+target_link_libraries(continuum
+    PUBLIC
+        datastructures
 )

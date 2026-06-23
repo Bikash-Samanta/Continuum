@@ -9,7 +9,7 @@
 #include <initializer_list>
 #include <typeinfo>
 
-namespace alpha {
+namespace continuum {
     // From <type_traits>
 	using ::std::enable_if;
 	using ::std::enable_if_t;
@@ -144,11 +144,11 @@ namespace alpha {
 	}
 
 	template <typename U>
-	inline constexpr auto _Unwrappable(int) -> decltype(alpha::declval<U>()._Unwrapped(), bool{}) {
+	inline constexpr auto _Unwrappable(int) -> decltype(continuum::declval<U>()._Unwrapped(), bool{}) {
 		return true;
 	}
 	template <typename U>
-	inline constexpr auto _Orderable(int) -> decltype(alpha::declval<U>().operator>(U()), bool{}) {
+	inline constexpr auto _Orderable(int) -> decltype(continuum::declval<U>().operator>(U()), bool{}) {
 		return true;
 	}
 
@@ -180,7 +180,7 @@ namespace alpha {
 	}
 }
 
-namespace alpha {
+namespace continuum {
 	 using :: div_t;
 	 using :: ldiv_t;
 	 using :: abort;
@@ -246,13 +246,13 @@ namespace alpha {
 	 using :: strxfrm;
 }
 
-namespace alpha {
+namespace continuum {
 	template<class _Ty, class... _Args>
 	inline void construct(_Ty* _Ptr, _Args&&... _Val) {
 		new(_Ptr) _Ty(forward<_Args>(_Val)...);
 	}
 }
-namespace alpha {
+namespace continuum {
 	template<class _Ty> using initializer = std::initializer_list<_Ty>;
 	template <class _Ty> const char* type_name = typeid(_Ty).name();
 }
